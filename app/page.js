@@ -1,4 +1,4 @@
-export default function App() {
-  return <h1 className="text-7xl underline italic">Hello world!</h1>;
+export default function Home() {
+  return <h1 className="underline">Hellodssd ld!</h1>;
 }
 // font-bold underline

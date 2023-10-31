@@ -3,6 +3,10 @@ import { Sql } from 'postgres';
 export type User = {
   id: number;
   username: string;
+  passwordHash: string;
+  email: string;
+  firstName: string;
+  lastName: string;
 };
 
 export async function up(sql: Sql) {
@@ -11,7 +15,10 @@ export async function up(sql: Sql) {
       users (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         username VARCHAR(80) NOT NULL UNIQUE,
-        password_hash VARCHAR(80) NOT NULL
+        passwordHash VARCHAR(80) NOT NULL,
+        email VARCHAR(80) NOT NULL UNIQUE,
+        firstName VARCHAR(80) NOT NULL,
+        lastName VARCHAR(80) NOT NULL
       );
   `;
 }
