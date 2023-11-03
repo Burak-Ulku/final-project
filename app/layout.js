@@ -26,6 +26,11 @@ export default function RootLayout({ children }) {
           </nav>
         </div>
 
+        <div>
+          <Link href="/register">Register</Link>
+          <Link href="/login">Login</Link>
+        </div>
+
         {children}
       </body>
     </html>
