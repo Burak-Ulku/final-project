@@ -28,7 +28,8 @@ export const createUser = cache(
           ${username.toLowerCase()},
           ${email},
           ${first_name},
-          ${last_name}
+          ${last_name},
+          ${passwordHash}
         ) RETURNING id,
         username
     `;
