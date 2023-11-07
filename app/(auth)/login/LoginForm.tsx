@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { RegisterResponseBodyPost } from '../../api/(auth)/register/route';
+import { LoginResponseBodyPost } from '../../api/(auth)/login/route';
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
@@ -21,7 +21,7 @@ export default function LoginForm() {
       }),
     });
 
-    const data = await response.json();
+    const data: LoginResponseBodyPost = await response.json();
 
     if ('errors' in data) {
       setErrors(data.errors);

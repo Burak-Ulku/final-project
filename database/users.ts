@@ -9,19 +9,19 @@ export type UserWithPasswordHash = User & {
 export const createUser = cache(
   async (
     username: string,
-    passwordHash: string,
     email: string,
     firstname: string,
     lastname: string,
+    passwordHash: string,
   ) => {
     const [user] = await sql<User[]>`
       INSERT INTO
         users (
           username,
-          passwordHash,
           email,
           firstname,
-          lastname
+          lastname,
+          passwordHash
         )
       VALUES
         (

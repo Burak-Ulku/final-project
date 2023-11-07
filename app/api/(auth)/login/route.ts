@@ -52,15 +52,15 @@ export async function POST(
   );
 
   if (!isPasswordValid) {
-       return NextResponse.json(
-         { errors: [{ message: 'username or password not valid' }] },
-         { status: 401 },
-       );
+    return NextResponse.json(
+      { errors: [{ message: 'username or password not valid' }] },
+      { status: 401 },
+    );
+  }
 
-
-
-
-  return NextResponse.json({ user:{
-     username: userWithPasswordHash?.username,},
+  return NextResponse.json({
+    user: {
+      username: userWithPasswordHash.username,
+    },
   });
 }

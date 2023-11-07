@@ -6,10 +6,10 @@ import { User } from '../../../../migrations/00000-createTableUsers';
 
 const registerSchema = z.object({
   username: z.string().min(3),
-  password: z.string().min(3),
   email: z.string().min(3),
   firstname: z.string().min(3),
   lastname: z.string().min(3),
+  password: z.string().min(3),
 });
 
 export type RegisterResponseBodyPost =
@@ -43,10 +43,10 @@ export async function POST(
 
   const newUser = await createUser(
     result.data.username,
-    passwordHash,
     result.data.email,
     result.data.firstname,
     result.data.lastname,
+    passwordHash,
   );
 
   if (!newUser) {
