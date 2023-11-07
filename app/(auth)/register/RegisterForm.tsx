@@ -5,6 +5,9 @@ import { RegisterResponseBodyPost } from '../../api/(auth)/register/route';
 
 export default function RegisterPage() {
   const [username, setUsername] = useState('');
+  const [firstname, setFirstname] = useState('');
+  const [email, setEmail] = useState('');
+  const [lastname, setLastname] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const router = useRouter();
@@ -15,7 +18,9 @@ export default function RegisterPage() {
       method: 'POST',
       body: JSON.stringify({
         username,
-
+        firstname,
+        lastname,
+        email,
         password,
       }),
     });
@@ -35,6 +40,20 @@ export default function RegisterPage() {
         <label>
           Username:
           <input onChange={(event) => setUsername(event.currentTarget.value)} />
+        </label>
+        <label>
+          First Name:
+          <input
+            onChange={(event) => setFirstname(event.currentTarget.value)}
+          />
+        </label>
+        <label>
+          Last Name:
+          <input onChange={(event) => setLastname(event.currentTarget.value)} />
+        </label>
+        <label>
+          Email:
+          <input onChange={(event) => setEmail(event.currentTarget.value)} />
         </label>
         <label>
           Password:

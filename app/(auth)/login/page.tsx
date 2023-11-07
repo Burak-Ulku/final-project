@@ -1,6 +1,6 @@
 import LoginForm from './LoginForm';
 
-export default function RegisterPage() {
+export default function LoginPage() {
   return (
     <div>
       <LoginForm />

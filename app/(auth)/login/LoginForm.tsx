@@ -21,7 +21,7 @@ export default function LoginForm() {
       }),
     });
 
-    const data: RegisterResponseBodyPost = await response.json();
+    const data = await response.json();
 
     if ('errors' in data) {
       setErrors(data.errors);
@@ -30,8 +30,6 @@ export default function LoginForm() {
 
     router.push(`/`);
 
-    // revalidatePath() throws unnecessary error, will be used when stable
-    // revalidatePath('/(auth)/login', 'page');
     router.refresh();
   }
 

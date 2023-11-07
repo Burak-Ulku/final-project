@@ -7,29 +7,31 @@ import { User } from '../../../../migrations/00000-createTableUsers';
 const registerSchema = z.object({
   username: z.string().min(3),
   password: z.string().min(3),
+  email: z.string().min(3),
+  firstname: z.string().min(3),
+  lastname: z.string().min(3),
 });
 
-export type RegisterResponseBodyPost = {
-  user: User;
-};
-{
-  errors: {
-    message: string;
-  }
-  [];
-}
+export type RegisterResponseBodyPost =
+  | {
+      user: User;
+    }
+  | {
+      errors: { message: string }[];
+    };
 
 export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<RegisterResponseBodyPost>> {
   const body = await request.json();
+  console.log(body);
 
   const result = registerSchema.safeParse(body);
 
   if (!result.success) {
     return NextResponse.json(
       {
-        error: result.error.issues,
+        errors: result.error.issues,
       },
       { status: 400 },
     );
@@ -39,7 +41,13 @@ export async function POST(
 
   const passwordHash = await bcrypt.hash(result.data.password, 12);
 
-  const newUser = await createUser(result.data.username, passwordHash);
+  const newUser = await createUser(
+    result.data.username,
+    passwordHash,
+    result.data.email,
+    result.data.firstname,
+    result.data.lastname,
+  );
 
   if (!newUser) {
     return NextResponse.json(
@@ -49,8 +57,6 @@ export async function POST(
   }
 
   return NextResponse.json({
-    user: {
-      username: 'hello',
-    },
+    user: newUser,
   });
 }
