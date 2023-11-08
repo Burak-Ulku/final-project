@@ -39,6 +39,13 @@ export async function POST(
 
   const user = await getUserByUsername(result.data.username);
 
+  if (user) {
+    return NextResponse.json(
+      { errors: [{ message: 'username is already taken' }] },
+      { status: 403 },
+    );
+  }
+
   const passwordHash = await bcrypt.hash(result.data.password, 12);
 
   const newUser = await createUser(

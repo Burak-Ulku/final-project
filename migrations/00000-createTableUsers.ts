@@ -18,7 +18,7 @@ export async function up(sql: Sql) {
         email VARCHAR(80) NOT NULL UNIQUE,
         firstname VARCHAR(80) NOT NULL,
         lastname VARCHAR(80) NOT NULL,
-        passwordHash VARCHAR(80) NOT NULL
+        password_hash VARCHAR(80) NOT NULL
       );
   `;
 }

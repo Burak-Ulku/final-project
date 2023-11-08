@@ -2,9 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { getSafeReturnToPath } from '../../../util/validation';
 import { LoginResponseBodyPost } from '../../api/(auth)/login/route';
 
-export default function LoginForm() {
+type Props = { returnTo?: string | string[] };
+
+export default function LoginForm(props: Props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ message: string }[]>([]);
@@ -28,7 +31,15 @@ export default function LoginForm() {
       return;
     }
 
-    router.push(`/`);
+    // if (props.returnTo) {
+    //   console.log('Check Return to: ', props.returnTo);
+    //   router.push(props.returnTo);
+    // }
+    // console.log('Checl Return to: ', props.returTo);
+
+    router.push(
+      getSafeReturnToPath(props.returnTo) || `/profile/${data.user.username}`,
+    );
 
     router.refresh();
   }
@@ -36,11 +47,11 @@ export default function LoginForm() {
   return (
     <form onSubmit={async (event) => await handleRegister(event)}>
       <label>
-        Username
+        Username:
         <input onChange={(event) => setUsername(event.currentTarget.value)} />
       </label>
       <label>
-        Password
+        Password:
         <input
           type="password"
           onChange={(event) => setPassword(event.currentTarget.value)}

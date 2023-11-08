@@ -21,7 +21,7 @@ export const createUser = cache(
           email,
           firstname,
           lastname,
-          passwordHash
+          password_hash
         )
       VALUES
         (

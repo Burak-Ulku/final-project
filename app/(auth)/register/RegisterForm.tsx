@@ -32,7 +32,7 @@ export default function RegisterPage() {
       return;
     }
 
-    router.push('/');
+    router.push(`/profile/${data.user.username}`);
   }
   return (
     <div>
