@@ -9,6 +9,8 @@ export type Travelpost = {
 };
 
 export async function up(sql: Sql) {
+
+
   await sql`
     CREATE TABLE
       travel_posts (
@@ -22,5 +24,5 @@ export async function up(sql: Sql) {
 }
 
 export async function down(sql: Sql) {
-  await sql` DROP TABLE travelposts `;
+  await sql` DROP TABLE travel_posts `;
 }
