@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { getValidSessionByToken } from '../../../database/sessions';
+import { getValidSessionByToken } from '../../database/sessions';
 import TravelPostsForm from './travelPostsForm';
 
 type Props = { searchParams: { returnTo?: string | string[] } };
@@ -12,7 +12,7 @@ export default async function TravelPostPage({ searchParams }: Props) {
     sessionTokenCookie &&
     (await getValidSessionByToken(sessionTokenCookie.value));
 
-  if (session) redirect('/');
+  if (!session) redirect('/');
 
   return (
     <div>

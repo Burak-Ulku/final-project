@@ -1,21 +1,13 @@
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { Travelpost } from '../../../../migrations/00006-createTableTravelposts';
+import { createTravelpost } from '../../../database/travelPosts';
+import { getUserBySessionToken } from '../../../database/users';
+import { Travelpost } from '../../../migrations/00006-createTableTravelposts';
 
 // import { createSession } from '../../../../database/sessions';
 // import { getUserWithPasswordHashByUsername } from '../../../../database/users';
 // import { secureCookieOptions } from '../../../../util/cookies';
-
-const { Pool } = require('pg');
-
-// Create a PostgreSQL pool
-const pool = new Pool({
-  user: 'final',
-  host: 'localhost',
-  database: 'final',
-  password: 'final',
-  port: 5432, // PostgreSQL default port
-});
 
 const travelPostSchema = z.object({
   imageUrl: z.string().min(3),
@@ -35,6 +27,7 @@ export async function POST(
   request: NextRequest,
 ): Promise<NextResponse<TravelPostsResponseBodyPost>> {
   const body = await request.json();
+  console.log(body);
 
   const result = travelPostSchema.safeParse(body);
 
@@ -45,9 +38,37 @@ export async function POST(
       },
       { status: 400 },
     );
-  } else {
-    return NextResponse.json({ errors: [{ message: 'Success' }] });
   }
+  const sessionTokenCookie = cookies().get('sessionToken');
+
+  const user =
+    sessionTokenCookie &&
+    (await getUserBySessionToken(sessionTokenCookie.value));
+
+  if (!user) {
+    return NextResponse.json(
+      {
+        errors: [{ message: 'user not defined' }],
+      },
+      { status: 400 },
+    );
+  }
+  const post = await createTravelpost(
+    user.id,
+    result.data.imageUrl,
+    result.data.adress,
+    result.data.place,
+  );
+
+  if (!post) {
+    return NextResponse.json(
+      {
+        errors: [{ message: 'post not defined' }],
+      },
+      { status: 400 },
+    );
+  }
+  return NextResponse.json({ travelPost: post });
 }
 
 //   // const user = await getUserByUsername(result.data.username);

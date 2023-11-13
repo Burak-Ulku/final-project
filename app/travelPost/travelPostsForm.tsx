@@ -2,8 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { getSafeReturnToPath } from '../../../util/validation';
-import { TravelPostsResponseBodyPost } from '../../api/(auth)/travelPosts/route';
+import { getSafeReturnToPath } from '../../util/validation';
+import { TravelPostsResponseBodyPost } from '../api/travelPosts/route';
 
 type Props = { returnTo?: string | string[] };
 

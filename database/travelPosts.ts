@@ -12,10 +12,10 @@ export const createTravelpost = cache(
     const [travelpost] = await sql<Travelpost[]>`
       INSERT INTO
         travel_posts (
-          userId,
+          user_id,
           image_url,
           adress,
-          placeName
+          place_name
         )
       VALUES
         (
