@@ -43,7 +43,6 @@ export default async function RootLayout(props: Props) {
             {/* This is optimized */}
             <Link href="/">Home</Link>
             <Link href="/travelPost">Travelposts</Link>
-            <Link href="/travelposts-admin">Admin</Link>
             <Link href="/notes">Check Notes</Link>
           </div>
 
