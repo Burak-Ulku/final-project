@@ -1,11 +1,15 @@
+import 'tailwindcss/tailwind.css';
 import React from 'react';
 import { logout } from './action';
 
 export default function LogoutButton() {
   return (
     <form>
-      <button className="logoutButton" formAction={logout}>
-        Logout{' '}
+      <button
+        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-red-600"
+        formAction={logout}
+      >
+        Logout
       </button>
     </form>
   );
