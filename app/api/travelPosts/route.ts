@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createTravelpost } from '../../../database/travelPosts';
+import { uploadImageToCloudinary } from '../../../database/uploadToCloudinary';
 import { getUserBySessionToken } from '../../../database/users';
 import { Travelpost } from '../../../migrations/00006-createTableTravelposts';
 
@@ -60,6 +61,7 @@ export async function POST(
     result.data.place,
   );
 
+  //error handling
   if (!post) {
     return NextResponse.json(
       {
@@ -68,7 +70,24 @@ export async function POST(
       { status: 400 },
     );
   }
-  return NextResponse.json({ travelPost: post });
+
+  const travelPost = await uploadImageToCloudinary(result.data.imageUrl);
+
+  if (travelPost === 200) {
+    return NextResponse.json(
+      {
+        errors: [{ message: 'Picture uploaded' }],
+      },
+      { status: 200 },
+    );
+  } else {
+    return NextResponse.json(
+      {
+        errors: [{ message: 'Picture uploading failed' }],
+      },
+      { status: travelPost },
+    );
+  }
 }
 
 //   // const user = await getUserByUsername(result.data.username);
