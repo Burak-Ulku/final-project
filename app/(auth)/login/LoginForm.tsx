@@ -1,5 +1,6 @@
 'use client';
 
+// Import necessary modules and styles
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { getSafeReturnToPath } from '../../../util/validation';
@@ -31,12 +32,6 @@ export default function LoginForm(props: Props) {
       return;
     }
 
-    // if (props.returnTo) {
-    //   console.log('Check Return to: ', props.returnTo);
-    //   router.push(props.returnTo);
-    // }
-    // console.log('Checl Return to: ', props.returTo);
-
     router.push(
       getSafeReturnToPath(props.returnTo) || `/profile/${data.user.username}`,
     );
@@ -45,39 +40,62 @@ export default function LoginForm(props: Props) {
   }
 
   return (
-    <form
-      onSubmit={async (event) => await handleRegister(event)}
-      className="max-w-md mx-auto mt-8 p-6 bg-green-100 rounded-md shadow-md"
-    >
-      <div className="mb-4">
-        <label className="block text-green-700 text-sm font-bold mb-2">
-          Username:
-          <input
-            type="text"
-            className="w-full mt-1 p-2 border rounded-md"
-            onChange={(event) => setUsername(event.currentTarget.value)}
-          />
-        </label>
+    <div className="flex h-screen overflow-hidden">
+      {/* Left side - Photo */}
+      <div className="w-1/2 overflow-hidden">
+        {/* Add your photo component here */}
+        <img
+          src="https://images.pexels.com/photos/6150567/pexels-photo-6150567.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" // Replace with the URL of your photo
+          alt="Your Photo"
+          className="w-full h-full object-cover"
+        />
       </div>
-      <div className="mb-4">
-        <label className="block text-green-700 text-sm font-bold mb-2">
-          Password:
-          <input
-            type="password"
-            className="w-full mt-1 p-2 border rounded-md"
-            onChange={(event) => setPassword(event.currentTarget.value)}
-          />
-        </label>
-      </div>
-      <button className="w-full mt-4 p-2 bg-green-500 text-white rounded-md hover:bg-green-600">
-        Login
-      </button>
 
-      {errors.map((error) => (
-        <div className="text-red-500 mt-2" key={`error-${error.message}`}>
-          Error: {error.message}
-        </div>
-      ))}
-    </form>
+      {/* Right side - Login Form */}
+      <div className="w-1/2 flex items-center justify-center overflow-hidden">
+        <form
+          onSubmit={async (event) => await handleRegister(event)}
+          className="max-w-md p-8 bg-green-100 rounded-md shadow-md overflow-hidden"
+        >
+          {/* Increased padding for a larger form */}
+
+          <div className="mb-6">
+            {/* Increased margin bottom */}
+            <label className="block text-green-700 text-sm font-bold mb-2">
+              Username:
+              <input
+                type="text"
+                className="w-full mt-1 p-3 border rounded-md"
+                onChange={(event) => setUsername(event.currentTarget.value)}
+              />
+            </label>
+          </div>
+
+          <div className="mb-6">
+            {/* Increased margin bottom */}
+            <label className="block text-green-700 text-sm font-bold mb-2">
+              Password:
+              <input
+                type="password"
+                className="w-full mt-1 p-3 border rounded-md"
+                onChange={(event) => setPassword(event.currentTarget.value)}
+              />
+            </label>
+          </div>
+
+          <button className="w-full mt-6 p-3 bg-green-500 text-white rounded-md hover:bg-green-600">
+            {/* Increased padding for a larger button */}
+            Login
+          </button>
+
+          {errors.map((error) => (
+            <div className="text-red-500 mt-4" key={`error-${error.message}`}>
+              {/* Increased margin top */}
+              Error: {error.message}
+            </div>
+          ))}
+        </form>
+      </div>
+    </div>
   );
 }
