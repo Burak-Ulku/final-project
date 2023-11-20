@@ -40,12 +40,12 @@ export default function LoginForm(props: Props) {
   }
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden bg-white">
       {/* Left side - Photo */}
       <div className="w-1/2 overflow-hidden">
         {/* Add your photo component here */}
         <img
-          src="https://images.pexels.com/photos/6150567/pexels-photo-6150567.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" // Replace with the URL of your photo
+          src="https://images.pexels.com/photos/6150567/pexels-photo-6150567.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
           alt="Your Photo"
           className="w-full h-full object-cover"
         />
@@ -55,17 +55,18 @@ export default function LoginForm(props: Props) {
       <div className="w-1/2 flex items-center justify-center overflow-hidden">
         <form
           onSubmit={async (event) => await handleRegister(event)}
-          className="max-w-md p-8 bg-green-100 rounded-md shadow-md overflow-hidden"
+          className="max-w-md p-8 bg-green-500 rounded-md shadow-md overflow-hidden" // Set the form background to green
         >
           {/* Increased padding for a larger form */}
-
           <div className="mb-6">
             {/* Increased margin bottom */}
-            <label className="block text-green-700 text-sm font-bold mb-2">
+            <label className="block text-white text-sm font-bold mb-2">
+              {' '}
+              {/* Set text color to white */}
               Username:
               <input
                 type="text"
-                className="w-full mt-1 p-3 border rounded-md"
+                className="w-full mt-1 p-3 border rounded-md bg-white" // Set the input background to white
                 onChange={(event) => setUsername(event.currentTarget.value)}
               />
             </label>
@@ -73,17 +74,19 @@ export default function LoginForm(props: Props) {
 
           <div className="mb-6">
             {/* Increased margin bottom */}
-            <label className="block text-green-700 text-sm font-bold mb-2">
+            <label className="block text-white text-sm font-bold mb-2">
+              {' '}
+              {/* Set text color to white */}
               Password:
               <input
                 type="password"
-                className="w-full mt-1 p-3 border rounded-md"
+                className="w-full mt-1 p-3 border rounded-md bg-white" // Set the input background to white
                 onChange={(event) => setPassword(event.currentTarget.value)}
               />
             </label>
           </div>
 
-          <button className="w-full mt-6 p-3 bg-green-500 text-white rounded-md hover:bg-green-600">
+          <button className="w-full mt-6 p-3 bg-yellow-500 text-white rounded-md hover:bg-green-600">
             {/* Increased padding for a larger button */}
             Login
           </button>
