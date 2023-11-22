@@ -1,3 +1,4 @@
+import './globals.css';
 // components/RootLayout.js
 import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
@@ -25,7 +26,8 @@ export default async function RootLayout(props: Props) {
 
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.className}`}>
+      <body className="bg-cupcake text-blue-500 p-4 mx-auto">
+        {/* <body className={`font-sans ${inter.className}`}> */}
         <nav className="bg-blue-500 p-4 text-white">
           <div className="container mx-auto flex justify-between items-center">
             <div>
