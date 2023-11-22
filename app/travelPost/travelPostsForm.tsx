@@ -15,6 +15,7 @@ type Props = { returnTo?: string | string[] };
 export default function TravelPostsForm(props: Props) {
   const [imageUrl, setImageUrl] = useState('');
   const [adress, setAdress] = useState('');
+  const [uploadImage, setUploadImage] = useState<File | null>(null);
   const [place, setPlace] = useState('');
   const [errors, setErrors] = useState<{ message: string }[]>([]);
   const router = useRouter();
