@@ -18,6 +18,10 @@ export default function TravelPostsForm(props: Props) {
   const [uploadImage, setUploadImage] = useState<File | null>(null);
   const [place, setPlace] = useState('');
   const [errors, setErrors] = useState<{ message: string }[]>([]);
+  const [previewImageUrl, setPreviewImageUrl] = useState<string | undefined>(
+    undefined,
+  );
+
   const router = useRouter();
 
   async function handleRegister(event: React.FormEvent<HTMLFormElement>) {
@@ -31,6 +35,8 @@ export default function TravelPostsForm(props: Props) {
         place,
       }),
     });
+
+    setPreviewImageUrl(uploadImage ? URL.createObjectURL(uploadImage) : '');
 
     const travelPostData: TravelPostsResponseBodyPost = await response.json();
 
@@ -73,6 +79,14 @@ export default function TravelPostsForm(props: Props) {
           onChange={(event) => setPlace(event.currentTarget.value)}
         />
       </label>
+      {previewImageUrl !== undefined && (
+        <img
+          src={previewImageUrl}
+          alt="Preview"
+          className="max-w-full mb-4 rounded-md shadow-md"
+        />
+      )}
+
       <button
         className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:shadow-outline-green"
         type="submit"
