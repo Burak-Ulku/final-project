@@ -1,5 +1,5 @@
 import { cache } from 'react';
-import { Note } from '../migrations/00007-createTableNotes';
+import { Note } from '../migrations/00006-createTableNotes';
 import { sql } from './connect';
 
 export const createNote = cache(async (userId: number, textContent: string) => {

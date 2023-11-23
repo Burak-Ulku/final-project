@@ -1,6 +1,16 @@
 import { cache } from 'react';
-import { Travelpost } from '../migrations/00006-createTableTravelposts';
+import { Travelpost } from '../migrations/00005-createTableTravelposts';
 import { sql } from './connect';
+
+export const getTravelPosts = cache(async () => {
+  const user = await sql<Travelpost[]>`
+    SELECT
+      *
+    FROM
+      travel_posts
+  `;
+  return user;
+});
 
 export const createTravelpost = cache(
   async (

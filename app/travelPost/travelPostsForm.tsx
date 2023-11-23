@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { getSafeReturnToPath } from '../../util/validation';
 import { TravelPostsResponseBodyPost } from '../api/travelPosts/route';
 
@@ -36,7 +37,11 @@ export default function TravelPostsForm(props: Props) {
       }),
     });
 
-    setPreviewImageUrl(uploadImage ? URL.createObjectURL(uploadImage) : '');
+    // Preview the uploaded image on page
+    const handleImagePreview = (event: ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0] || null;
+      setUploadImage(file);
+    };
 
     const travelPostData: TravelPostsResponseBodyPost = await response.json();
 
@@ -80,10 +85,11 @@ export default function TravelPostsForm(props: Props) {
         />
       </label>
       {previewImageUrl !== undefined && (
-        <img
-          src={previewImageUrl}
-          alt="Preview"
-          className="max-w-full mb-4 rounded-md shadow-md"
+        <Image
+          src={uploadImage ? URL.createObjectURL(uploadImage) : ''}
+          alt="irgendwas"
+          width={300}
+          height={250}
         />
       )}
 

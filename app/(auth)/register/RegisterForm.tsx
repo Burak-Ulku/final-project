@@ -129,7 +129,7 @@ export default function RegisterPage(props: Props) {
       <div className="w-1/2 overflow-hidden">
         {/* Add your photo component here */}
         <img
-          src="https://images.pexels.com/photos/6150567/pexels-photo-6150567.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" // Replace with the URL of your photo
+          src="https://images.pexels.com/photos/14384753/pexels-photo-14384753.jpeg?auto=compress&cs=tinysrgb&w=1600" // Replace with the URL of your photo
           alt="Your Photo"
           className="w-full h-full object-cover"
         />

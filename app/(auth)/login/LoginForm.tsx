@@ -45,7 +45,7 @@ export default function LoginForm(props: Props) {
       <div className="w-1/2 overflow-hidden">
         {/* Add your photo component here */}
         <img
-          src="https://images.pexels.com/photos/6150567/pexels-photo-6150567.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+          src="https://images.pexels.com/photos/3370153/pexels-photo-3370153.jpeg?auto=compress&cs=tinysrgb&w=1600"
           alt="Your Photo"
           className="w-full h-full object-cover"
         />
@@ -55,12 +55,12 @@ export default function LoginForm(props: Props) {
       <div className="w-1/2 flex items-center justify-center overflow-hidden">
         <form
           onSubmit={async (event) => await handleRegister(event)}
-          className="max-w-md p-8 bg-green-500 rounded-md shadow-md overflow-hidden" // Set the form background to green
+          className="max-w-md p-8 bg-green-100 rounded-md shadow-md overflow-hidden"
         >
           {/* Increased padding for a larger form */}
           <div className="mb-6">
             {/* Increased margin bottom */}
-            <label className="block text-white text-sm font-bold mb-2">
+            <label className="block text-green-700 text-sm font-bold mb-2">
               {' '}
               {/* Set text color to white */}
               Username:
@@ -74,7 +74,7 @@ export default function LoginForm(props: Props) {
 
           <div className="mb-6">
             {/* Increased margin bottom */}
-            <label className="block text-white text-sm font-bold mb-2">
+            <label className="block text-green-700 text-sm font-bold mb-2">
               {' '}
               {/* Set text color to white */}
               Password:
@@ -86,7 +86,7 @@ export default function LoginForm(props: Props) {
             </label>
           </div>
 
-          <button className="w-full mt-6 p-3 bg-yellow-500 text-white rounded-md hover:bg-green-600">
+          <button className="w-full mt-6 p-3 bg-yellow-500 text-black rounded-md hover:bg-green-600">
             {/* Increased padding for a larger button */}
             Login
           </button>

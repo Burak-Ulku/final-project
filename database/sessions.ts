@@ -1,6 +1,6 @@
 import { cache } from 'react';
 import { sql } from '../database/connect';
-import { Sessions } from '../migrations/00005-createTableSessions';
+import { Sessions } from '../migrations/00004-createTableSessions';
 
 export const deleteExpiredSessions = cache(async () => {
   await sql`

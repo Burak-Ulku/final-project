@@ -9,14 +9,12 @@ export type Travelpost = {
 };
 
 export async function up(sql: Sql) {
-
-
   await sql`
     CREATE TABLE
       travel_posts (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
-        image_url VARCHAR(200) NOT NULL,
+        image_url VARCHAR(900) NOT NULL,
         adress VARCHAR(80) NOT NULL,
         place_name VARCHAR(80) NOT NULL
       );

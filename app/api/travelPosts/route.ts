@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { createTravelpost } from '../../../database/travelPosts';
 import { uploadImageToCloudinary } from '../../../database/uploadToCloudinary';
 import { getUserBySessionToken } from '../../../database/users';
-import { Travelpost } from '../../../migrations/00006-createTableTravelposts';
+import { Travelpost } from '../../../migrations/00005-createTableTravelposts';
 
 // import { createSession } from '../../../../database/sessions';
 // import { getUserWithPasswordHashByUsername } from '../../../../database/users';
