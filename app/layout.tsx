@@ -5,8 +5,8 @@ import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import Logo from '../app/public/images/logo.png';
 import { getUserBySessionToken } from '../database/users';
+import Logo from '../public/images/logo.png';
 import LogoutButton from './(auth)/logout/LogoutButton';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -28,25 +28,25 @@ export default async function RootLayout(props: Props) {
 
   return (
     <html lang="en">
-      <body className="bg-cupcake text-blue-500 p-4 mx-auto">
+      <body className="bg-cupcake text-blue-500 p-0 m-0">
         <nav className="bg-blue-500 p-4 text-white">
           <div className="container mx-auto flex justify-between items-center">
             {/* Use passHref prop and wrap the entire content in an anchor tag */}
             <Link href="/" passHref>
               <div className="cursor-pointer">
                 {/* Use the Image component for better performance */}
-                <Image src={Logo} alt="Logo" width={120} height={40} />
+                <Image src={Logo} alt="Logo" width={150} height={40} />
               </div>
             </Link>
 
             <div>
-              <Link href="/travelPost" className="text-white ml-4">
+              <Link href="/travelPost" className="text-white ml-4 text-xl">
                 Travelposts
               </Link>
-              <Link href="/notes" className="text-white ml-4">
+              <Link href="/notes" className="text-white ml-4 text-xl">
                 Check Notes
               </Link>
-              <Link href="/posts" className="text-white ml-4">
+              <Link href="/posts" className="text-white ml-4 text-xl">
                 Posts
               </Link>
 
@@ -61,10 +61,10 @@ export default async function RootLayout(props: Props) {
                 </>
               ) : (
                 <>
-                  <Link href="/register" className="text-white ml-4">
+                  <Link href="/register" className="text-white ml-4 text-xl">
                     Register
                   </Link>
-                  <Link href="/login" className="text-white ml-4">
+                  <Link href="/login" className="text-white ml-4 text-xl">
                     Login
                   </Link>
                 </>

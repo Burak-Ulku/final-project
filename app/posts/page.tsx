@@ -13,29 +13,37 @@ export default async function TravelPostsPage() {
   if (!travelposts) {
     return <div>Loading...</div>; // or display an error message
   }
+  console.log(travelposts);
 
   return (
-    <div>
-      <h1>These are my travel posts</h1>
-
-      {travelposts.map((travelpost) => {
-        return (
-          <div
-            key={`travelpost-div-${travelpost.id}`}
-            data-test-id={`travelpost-type-${travelpost}`}
-          >
-            {/* <Link href={`/travelposts/${travelpost.id}`}> */}
-            <div>{travelpost.placeName}</div>
-            <Image
-              src={`/images/${travelpost}.png`} // Adjust the path or use a different method for generating image paths
-              alt="travelpost"
-              width={200}
-              height={200}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      {travelposts.map((travelpost) => (
+        <div
+          key={`travelpost-div-${travelpost.id}`}
+          data-test-id={`travelpost-type-${travelpost}`}
+          className="card w-96 bg-base-100 shadow-xl"
+        >
+          <figure className="px-10 pt-10">
+            <img
+              src={travelpost.imageUrl} // Adjust the path or use a different method for generating image paths
+              alt={travelpost.placeName}
+              className="rounded-xl"
+              width={300}
+              height={300}
             />
-            {/* </Link> */}
+          </figure>
+          <div className="card-body items-center text-center">
+            <h2 className="card-title">{travelpost.placeName}</h2>
+            <p>{travelpost.adress}</p>
+            {/* If you have a link, you can uncomment the following section */}
+            {/* <div className="card-actions">
+              <Link href={`/travelposts/${travelpost.id}`}>
+                <a className="btn btn-primary">Details</a>
+              </Link>
+            </div> */}
           </div>
-        );
-      })}
+        </div>
+      ))}
     </div>
   );
 }

@@ -60,7 +60,7 @@ export default function TravelPostsForm(props: Props) {
 
   return (
     <form
-      className="max-w-md mx-auto p-4 bg-white border rounded-md shadow-md"
+      className="max-w-md mx-auto mt-56 p-4 bg-white border rounded-md shadow-md"
       onSubmit={async (event) => await handleRegister(event)}
     >
       <label className="block mb-2">
@@ -102,7 +102,7 @@ export default function TravelPostsForm(props: Props) {
 
       {errors.map((error) => (
         <div className="text-red-500 mt-2" key={`error-${error.message}`}>
-          Error: {error.message}
+          {/* Error: {error.message} */}
         </div>
       ))}
     </form>

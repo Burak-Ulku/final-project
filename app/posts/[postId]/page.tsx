@@ -25,18 +25,20 @@ export default async function TravelPostPage(props: Props) {
   }
 
   return (
-    <div>
-      <h1>{singlePost.placeName}</h1>
-      {/* <div>{formatDate(singlePost.date)}</div> */}
-      {/* Add additional fields as needed */}
-      <Image
-        src={`/images/${singlePost.placeName}.png`}
-        width={200}
-        height={200}
-        alt="singlePost.placeName"
-      />
-      {/* Display other details of the travel post */}
-      <p>{singlePost.placeName}</p>
+    <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card-body">
+        <h1>{singlePost.placeName}</h1>
+        {/* <div>{formatDate(singlePost.date)}</div> */}
+        {/* Add additional fields as needed */}
+        <img
+          src={singlePost.placeName}
+          width={200}
+          height={200}
+          alt="singlePost.placeName"
+        />
+        {/* Display other details of the travel post */}
+        <p>{singlePost.placeName}</p>
+      </div>
     </div>
   );
 }
