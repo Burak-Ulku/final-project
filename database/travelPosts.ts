@@ -12,6 +12,18 @@ export const getTravelPosts = cache(async () => {
   return user;
 });
 
+export const getTravelPostById = cache(async (postId: number) => {
+  const travelPost = await sql<Travelpost[]>`
+    SELECT
+      *
+    FROM
+      travel_posts
+    WHERE
+      id = ${postId}
+  `;
+  return travelPost[0]; // Assuming there's only one post with a given ID
+});
+
 export const createTravelpost = cache(
   async (
     userId: number,
